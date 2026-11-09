@@ -2,6 +2,8 @@
 
 [English](#english) | [中文说明](#中文说明)
 
+📦 **镜像包 / Packages**: [ghcr.io/quietmodem/home-assistant](https://github.com/users/quietmodem/packages/container/home-assistant) ｜ [全部历史版本 / All versions](https://github.com/users/quietmodem/packages/container/home-assistant/versions)
+
 ---
 
 <div id="english"></div>
