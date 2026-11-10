@@ -6,6 +6,18 @@ on:
   workflow_dispatch:      # 支持手动触发.
 
 jobs:
+  # 保活：GitHub 对公共仓库的规则是 60 天无仓库活动就自动禁用 schedule 触发。
+  # 本仓库的工作流只推 GHCR 镜像、从不产生 commit，所以天天跑也会被判“无活动”。
+  # 这个 job 在每次定时运行时通过 GitHub API 预先重新启用本工作流，把 60 天计时重置，
+  # 不产生任何虚拟 commit，不污染提交历史。手动触发时不执行。
+  workflow-keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
+
   sync-process:
     runs-on: ubuntu-latest
     permissions:
